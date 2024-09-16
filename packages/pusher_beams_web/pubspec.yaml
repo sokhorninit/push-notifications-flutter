@@ -1,12 +1,12 @@
 name: pusher_beams_web
 description: The Web implementation from Pusher Beams for Flutter, intended to be a platform-specific package.
-version: 1.1.1
+version: 1.1.2
 repository: https://github.com/pusher/push-notifications-flutter
 issue_tracker: https://github.com/pusher/push-notifications-flutter/issues?q=is%3Aissue+is%3Aopen+label%3Aweb
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.20.0"
+  sdk: ">=3.4.3 <4.0.0"
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
   pusher_beams_platform_interface: ^1.1.1
   js: ^0.6.3
-  uuid: ^3.0.5
+  uuid: ^4.4.2
 
 dev_dependencies:
   flutter_test:
@@ -33,10 +33,10 @@ flutter:
   # adding or updating assets for this project.
   plugin:
     implements: pusher_beams
-    platforms:
-      web:
-        pluginClass: PusherBeams
-        fileName: pusher_beams_web.dart
+    # platforms:
+    #   web:
+    #     pluginClass: PusherBeams
+    #     fileName: pusher_beams_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   #  assets:
