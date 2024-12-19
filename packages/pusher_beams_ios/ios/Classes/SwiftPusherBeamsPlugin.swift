@@ -71,9 +71,27 @@ public class SwiftPusherBeamsPlugin: FlutterPluginAppLifeCycleDelegate, FlutterP
         beamsClient?.registerForRemoteNotifications()
     }
 
+    // public func addDeviceInterestInterest(_ interest: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
+    //     try? beamsClient!.addDeviceInterest(interest: interest)
+    // }
+
     public func addDeviceInterestInterest(_ interest: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
-        try? beamsClient!.addDeviceInterest(interest: interest)
+    guard let beamsClient = beamsClient else {
+        error.pointee = FlutterError(code: "BEAMS_CLIENT_NOT_INITIALIZED",
+                                     message: "The Beams client has not been initialized.",
+                                     details: nil)
+        return
     }
+
+    do {
+        try beamsClient.addDeviceInterest(interest: interest)
+    } catch let err {
+        error.pointee = FlutterError(code: "FAILED_TO_ADD_INTEREST",
+                                     message: "Failed to add device interest.",
+                                     details: err.localizedDescription)
+    }
+}
+
 
     public func removeDeviceInterestInterest(_ interest: String, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) {
         try? beamsClient!.removeDeviceInterest(interest: interest)
